@@ -7,10 +7,7 @@
 """
 from functools import partial
 
-def multiplo_de(base, valor):
-    return valor % base == 0
-
-
+multiplo_de = lambda base, valor: valor % base == 0
 multiplo_de_5 = partial(multiplo_de, 5)
 multiplo_de_3 = partial(multiplo_de, 3)
 
