@@ -50,21 +50,3 @@ def happy(num):
         return False
     num = sum(int(s) ** 2 for s in str(num))
     return True if num == 1 else happy(num)
-
-
-# Teste mais simples:
-assert happy(1)
-
-# Testes do problema: 10, 13 e 203
-assert happy(10)
-assert happy(13)
-assert happy(203)
-assert happy(2003)
-assert happy(2008)
-
-# Teste números tristes
-assert not happy(2)
-assert not happy(3)
-assert not happy(12)
-assert not happy(77)
-assert not happy(2004)
