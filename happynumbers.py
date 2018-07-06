@@ -46,7 +46,5 @@ em ensino de matemática pela USP e professor do Colégio Santa Cruz
 
 
 def happy(num):
-    if num < 10 and num not in (1, 7):
-        return False
     num = sum(int(s) ** 2 for s in str(num))
-    return True if num == 1 else happy(num)
+    return num in (1, 7) if num < 10 else happy(num)
