@@ -51,20 +51,24 @@ def happy(num):
     for s in num_str:
         ct += int(s) ** 2
     if ct == 1:
-        return ct
+        return ct == 1
 
     ct2 = 0
     for s in str(ct):
         ct2 += int(s) ** 2
 
-    if ct2 == 0:
-        return ct2
+    if ct2 == 1:
+        return ct2 == 1
 
     ct3 = 0
     for s in str(ct2):
         ct3 += int(s) ** 2
-    return ct3 == 1
+    if ct3 == 1:
+        return ct3 == 1
 
+
+
+    return False
 
 # Teste mais simples:
 assert happy(1)
