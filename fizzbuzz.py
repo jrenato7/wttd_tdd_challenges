@@ -5,13 +5,24 @@
 3. Se receber um número divisível por 3 e 5 fala fizzbuzz
 4. Se não for nenhum dos acima fala o próprio número
 """
+from functools import partial
+
+def multiplo_de(base, valor):
+    return valor % base == 0
+
+
+multiplo_de_5 = partial(multiplo_de, 5)
+multiplo_de_3 = partial(multiplo_de, 3)
 
 
 def fizzbuzz(num):
-    if num % 5 == 0:
+    if multiplo_de_3(num) and multiplo_de_5(num):
+        return 'fizzbuzz'
+    elif multiplo_de_5(num):
         return 'buzz'
-    if num in (3, 6, 9):
+    elif multiplo_de_3(num):
         return 'fizz'
+
     return str(num)
 
 assert '1' == fizzbuzz(1)
@@ -25,3 +36,7 @@ assert 'fizz' == fizzbuzz(9)
 assert 'buzz' == fizzbuzz(5)
 assert 'buzz' == fizzbuzz(10)
 assert 'buzz' == fizzbuzz(20)
+
+assert 'fizzbuzz' == fizzbuzz(15)
+assert 'fizzbuzz' == fizzbuzz(30)
+assert 'fizzbuzz' == fizzbuzz(45)
