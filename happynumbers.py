@@ -46,29 +46,17 @@ em ensino de matemática pela USP e professor do Colégio Santa Cruz
 
 
 def happy(num):
-    num_str = str(num)
-    ct = 0
-    for s in num_str:
-        ct += int(s) ** 2
-    if ct == 1:
-        return ct == 1
+    ct = num
+    while ct != 1:
+        if ct < 10 and ct not in (1, 7):
+            break
+        tmp = str(ct)
+        t = 0
+        for s in tmp:
+            t += int(s) ** 2
+        ct = t
+    return ct == 1
 
-    ct2 = 0
-    for s in str(ct):
-        ct2 += int(s) ** 2
-
-    if ct2 == 1:
-        return ct2 == 1
-
-    ct3 = 0
-    for s in str(ct2):
-        ct3 += int(s) ** 2
-    if ct3 == 1:
-        return ct3 == 1
-
-
-
-    return False
 
 # Teste mais simples:
 assert happy(1)
@@ -81,3 +69,5 @@ assert happy(203)
 # Teste números tristes
 assert not happy(2)
 assert not happy(3)
+assert not happy(12)
+assert not happy(77)
