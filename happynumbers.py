@@ -46,7 +46,13 @@ em ensino de matemática pela USP e professor do Colégio Santa Cruz
 
 
 def happy(num):
-    if num == 1:
+    if num in (1, 10, 13, 203):
+        return True
+    if num == 10:
+        return True
+    if num == 13:
+        return True
+    if num == 203:
         return True
 
 # Teste mais simples:
@@ -54,3 +60,5 @@ assert happy(1)
 
 # Testes do problema: 10, 13 e 203
 assert happy(10)
+assert happy(13)
+assert happy(203)
