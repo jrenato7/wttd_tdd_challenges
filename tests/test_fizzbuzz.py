@@ -1,10 +1,9 @@
 import unittest
 
 from fizzbuzz import fizzbuzz
-from happynumbers import happy
 
 
-class TestFizzBuzz(unittest.TestCase):
+class FizzBuzzTest(unittest.TestCase):
     def test_responde_fizz_para_3(self):
         self.assertEqual('fizz', fizzbuzz(3))
 
@@ -40,14 +39,3 @@ class TestFizzBuzz(unittest.TestCase):
 
     def test_responde_4_para_4(self):
         self.assertEqual('4', fizzbuzz(4))
-
-
-class HappyNumbersTest(unittest.TestCase):
-    def test_happy_1(self):
-        self.assertEqual(True, happy(1))
-
-    def test_happy_all(self):
-        self.assertTrue(all(happy(n) for n in [10, 13, 203, 2003]))
-
-    def test_not_happy_all(self):
-        self.assertFalse(all(happy(n) for n in [2, 3, 12, 77, 2004]))
