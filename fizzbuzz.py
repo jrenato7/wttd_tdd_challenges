@@ -16,14 +16,14 @@ multiplo_de_3 = partial(multiplo_de, 3)
 
 
 def fizzbuzz(num):
+    ret = str(num)
     if multiplo_de_3(num) and multiplo_de_5(num):
-        return 'fizzbuzz'
+        ret = 'fizzbuzz'
     elif multiplo_de_5(num):
-        return 'buzz'
+        ret = 'buzz'
     elif multiplo_de_3(num):
-        return 'fizz'
-
-    return str(num)
+        ret = 'fizz'
+    return ret
 
 assert '1' == fizzbuzz(1)
 assert '2' == fizzbuzz(2)
