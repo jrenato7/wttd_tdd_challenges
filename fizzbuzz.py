@@ -8,13 +8,7 @@
 
 
 def fizzbuzz(num):
-    if num in (5, 10, 20):
-        return 'buzz'
-    if num == 5:
-        return 'buzz'
-    if num == 10:
-        return 'buzz'
-    if num == 20:
+    if num % 5 == 0:
         return 'buzz'
     if num in (3, 6, 9):
         return 'fizz'
