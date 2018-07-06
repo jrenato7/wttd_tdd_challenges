@@ -46,16 +46,11 @@ em ensino de matemática pela USP e professor do Colégio Santa Cruz
 
 
 def happy(num):
-    ct = num
-    while ct != 1:
-        if ct < 10 and ct not in (1, 7):
+    while num != 1:
+        if num < 10 and num not in (1, 7):
             break
-        tmp = str(ct)
-        t = 0
-        for s in tmp:
-            t += int(s) ** 2
-        ct = t
-    return ct == 1
+        num = sum(int(s) ** 2 for s in str(num))
+    return num == 1
 
 
 # Teste mais simples:
