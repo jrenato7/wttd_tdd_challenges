@@ -21,19 +21,3 @@ def fizzbuzz(num):
     elif multiplo_de_3(num):
         ret = 'fizz'
     return ret
-
-assert '1' == fizzbuzz(1)
-assert '2' == fizzbuzz(2)
-assert '4' == fizzbuzz(4)
-
-assert 'fizz' == fizzbuzz(3)
-assert 'fizz' == fizzbuzz(6)
-assert 'fizz' == fizzbuzz(9)
-
-assert 'buzz' == fizzbuzz(5)
-assert 'buzz' == fizzbuzz(10)
-assert 'buzz' == fizzbuzz(20)
-
-assert 'fizzbuzz' == fizzbuzz(15)
-assert 'fizzbuzz' == fizzbuzz(30)
-assert 'fizzbuzz' == fizzbuzz(45)
