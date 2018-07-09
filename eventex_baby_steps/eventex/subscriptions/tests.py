@@ -14,5 +14,8 @@ class SubscriptionTest(TestCase):
 
     def test_has_form(self):
         response = self.client.get('/inscricao/')
-        self.assertContains(response, 'input', 5)
-        self.assertContains(response, 'submit', 1)
+        self.assertContains(response, '<form', 1)
+        self.assertContains(response, '<input', 5)
+        self.assertContains(response, 'type="submit"', 1)
+        self.assertContains(response, 'type="text"', 3)
+        self.assertContains(response, 'type="email"', 3)
