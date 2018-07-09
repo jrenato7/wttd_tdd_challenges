@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.core import mail
 from eventex.subscriptions.forms import SubscriptionForm
 
 class SubscriptionTest(TestCase):
@@ -35,18 +36,39 @@ class SubscriptionTest(TestCase):
         self.assertSequenceEqual(fields, list(form.fields))
 
 
-'''class SubscriptionPostTest(TestCase):
+class SubscriptionPostTest(TestCase):
 
-    def test_post(self):
+    def setUp(self):
         data = dict(
             name='Renato B',
             cpf='12345678901',
             email='jose.renato77@gmail.com',
             phone='86995925144')
-        response = self.client.post('/inscricao/', data=data)
+        self.resp = self.client.post('/inscricao/', data=data)
+        self.mail = mail.outbox[0]
 
-        self.assertEqual(response.context['form'].email, 'jose.renato77@gmail.com')
-        self.assertEqual(response.context['form']['name'], 'Renato J')
-        self.assertEqual(response.context['form']['cpf'], '12345678901')
-        self.assertEqual(response.context['form']['phone'], '86995925144')
-'''
+    def test_post(self):
+        self.assertEqual(self.resp.status_code, 302)
+
+    def test_send_mail(self):
+        self.assertEqual(len(mail.outbox), 1)
+
+    def test_mail_content_subject(self):
+        self.assertEqual(self.mail.subject, 'Inscrição no Eventex')
+        
+    def test_mail_content_from(self):
+        self.assertEqual(self.mail.from_email, 'contato@eventex.com.br')
+    def test_mail_content_to(self):
+        self.assertIn('jose.renato77@gmail.com', self.mail.to)
+
+    def test_mail_content_cc(self):
+        self.assertIn('contato@eventex.com.br', self.mail.to)
+
+    def test_mail_content_body_name(self):
+        self.assertIn('Renato B', self.mail.body)
+
+    def test_mail_content_body_cpf(self):
+        self.assertIn('12345678901', self.mail.body)
+
+    def test_mail_content_body_phone(self):
+        self.assertIn('86995925144', self.mail.body)
