@@ -1,0 +1,7 @@
+Obrigado por se inscrever no eventex
+os dados que vc informou são:
+Nome: {{ name }}
+CPF: {{ cpf }}
+Email: {{ email }}
+Telefone: {{ phone }}
+Sua inscrião foi realizada com sucesso.

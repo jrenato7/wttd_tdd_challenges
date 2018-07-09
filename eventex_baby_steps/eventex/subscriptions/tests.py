@@ -1,11 +1,12 @@
-from django.test import TestCase
 from django.core import mail
+from django.test import TestCase
 from eventex.subscriptions.forms import SubscriptionForm
+
 
 class SubscriptionTest(TestCase):
 
     def setUp(self):
-        self.resp = self.client.get('/inscricao/') 
+        self.resp = self.client.get('/inscricao/')
 
     def test_access_subscription(self):
         """Mus return status code 200"""
@@ -13,7 +14,8 @@ class SubscriptionTest(TestCase):
 
     def test_template(self):
         """Must use template subscriptions/subscription_form.html"""
-        self.assertTemplateUsed(self.resp, 'subscriptions/subscription_form.html')
+        self.assertTemplateUsed(self.resp,
+                                'subscriptions/subscription_form.html')
 
     def test_has_form(self):
         """Must contain HTML form"""
@@ -55,9 +57,10 @@ class SubscriptionPostTest(TestCase):
 
     def test_mail_content_subject(self):
         self.assertEqual(self.mail.subject, 'Inscrição no Eventex')
-        
+
     def test_mail_content_from(self):
         self.assertEqual(self.mail.from_email, 'contato@eventex.com.br')
+
     def test_mail_content_to(self):
         self.assertIn('jose.renato77@gmail.com', self.mail.to)
 
@@ -72,3 +75,31 @@ class SubscriptionPostTest(TestCase):
 
     def test_mail_content_body_phone(self):
         self.assertIn('86995925144', self.mail.body)
+
+
+class SubscriptionPostErrors(TestCase):
+    def setUp(self):
+        data = {}
+        self.resp = self.client.post('/inscricao/', data=data)
+
+    def test_no_redirect(self):
+        self.assertEqual(self.resp.status_code, 200)
+
+    def test_template_used(self):
+        self.assertTemplateUsed(self.resp,
+                                'subscriptions/subscription_form.html')
+
+    def test_has_errors_form(self):
+        form = self.resp.context['form']
+        self.assertTrue(form.errors)
+
+
+class SubscriptionSuccessMessage(TestCase):
+    def test_success_message(self):
+        data = dict(
+            name='Renato B',
+            cpf='12345678901',
+            email='jose.renato77@gmail.com',
+            phone='86995925144')
+        response = self.client.post('/inscricao/', data, follow=True)
+        self.assertContains(response, 'Inscrição realizada com sucesso!')
