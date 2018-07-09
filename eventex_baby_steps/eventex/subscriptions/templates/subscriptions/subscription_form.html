@@ -1,1 +1,21 @@
-<form>
+<form name="subscription-form" method="post" action=".">
+    {% csrf_token %}
+    <div>
+        <label>Nome:</label>
+        <input type="text" name="name">
+    </div>
+    <div>
+        <label>Email:</label>
+        <input type="email" name="email">
+    </div>
+    <div>
+        <label>CPF:</label>
+        <input type="text" name="cpf">
+    </div>
+    <div>
+        <label>Telefone:</label>
+        <input type="text" name="phone">
+    </div>
+
+    <input type="submit">
+</form>
